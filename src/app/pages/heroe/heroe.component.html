@@ -1,0 +1,79 @@
+<h2>
+    Nombre del heroe :
+    <strong>Nombre</strong>
+</h2>
+<hr>
+<div class="row text-right">
+    <div class="col">
+        <a
+            class="btn btn-danger"
+            routerLink="/heroes"
+            role="button"
+        >
+            <i class="fa fa-arrow-left"></i>
+            Regresar
+        </a>
+    </div>
+</div>
+
+<form
+    [formGroup]="formHeroe"
+    (ngSubmit)="!id ? guardar() : actualizar()"
+>
+    <div class="form-group">
+        <label>Firebase ID</label>
+        <input
+            type="text"
+            formControlName="id"
+            class="form-control"
+            placeholder="Firebase ID"
+        >
+    </div>
+    <div class="form-group">
+        <label>Nombre(s)</label>
+        <input
+            type="text"
+            formControlName="nombre"
+            class="form-control"
+            placeholder="Nombre(s)"
+            required
+        >
+    </div>
+    <div class="form-group">
+        <label>Habilidad</label>
+        <input
+            type="text"
+            formControlName="habilidad"
+            class="form-control"
+            placeholder="Habilidad"
+            required
+        >
+    </div>
+    <div class="form-group">
+        <label>Estado</label>
+        <br>
+        <button
+            (click)="cambiarEstado()"
+            class="btn w-50"
+            [ngClass]="{'btn-success': vivo == true, 'btn-danger':vivo == false}"
+            type="button"
+        >
+            <i
+                [ngClass]="{'fa-smile-wink': vivo == true, 'fa-dizzy': vivo == false}"
+                class="fa"
+            ></i>
+            {{vivo ? 'Vivo':'Muerto'}}
+        </button>
+    </div>
+    <hr>
+    <div class="form-group text-center">
+        <button
+            type="submit"
+            class="btn btn-primary w-25"
+            [disabled]="formHeroe.invalid"
+        >
+            <i class="fa fa-save"></i>
+            Guardar
+        </button>
+    </div>
+</form>
